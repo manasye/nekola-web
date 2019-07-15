@@ -114,6 +114,7 @@
               v-for="city in landmarks"
               :key="city.title"
               class="landmark-card"
+              @click="pushTo(city.route)"
             >
               <v-card>
                 <v-img :src="city.image" max-height="250"></v-img>
@@ -162,7 +163,8 @@ export default {
           name: "SMA Negeri 8 Jakarta",
           score: 4.9,
           id: 1
-        },  {
+        },
+        {
           name: "SMA Negeri 8 Jakarta",
           score: 4.9,
           id: 1
@@ -188,19 +190,23 @@ export default {
       landmarks: [
         {
           image: require("../assets/jakarta.png"),
-          title: "Jakarta"
+          title: "Jakarta",
+          route: "/schools?city=Jakarta"
         },
         {
           image: require("../assets/bali.png"),
-          title: "Bali"
+          title: "Bali",
+          route: "/schools?city=Bali"
         },
         {
           image: require("../assets/medan.png"),
-          title: "Medan"
+          title: "Medan",
+          route: "/schools?city=Medan"
         },
         {
           image: require("../assets/jogja.png"),
-          title: "Jogja"
+          title: "Jogja",
+          route: "/schools?city=Jogja"
         }
       ]
     };
