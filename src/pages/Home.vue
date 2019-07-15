@@ -33,7 +33,7 @@
             <v-btn
               large
               dark
-              class="text-capitalize login-button"
+              class="text-capitalize "
               @click="pushTo('/schools?m=compare')"
               >Bandingkan Sekolah</v-btn
             >
@@ -42,7 +42,7 @@
             <v-btn
               large
               dark
-              class="text-capitalize login-button"
+              class="text-capitalize"
               @click="pushTo('/schools?m=review')"
               >Ulas Sekolah</v-btn
             >
@@ -51,7 +51,7 @@
             <v-btn
               large
               dark
-              class="text-capitalize login-button"
+              class="text-capitalize"
               @click="pushTo('/teachers?m=review')"
               >Ulas Guru</v-btn
             >
@@ -64,7 +64,18 @@
       <v-layout>
         <v-flex xs6>
           <div class="fav-school">
-            <h1 class="text-left">Sekolah Terfavorit</h1>
+            <v-layout>
+              <v-flex xs8>
+                <h2 class="text-left">Sekolah Terfavorit</h2>
+              </v-flex>
+              <v-flex xs4>
+                <b-form-select
+                  v-model="selectedPlace"
+                  :options="places"
+                ></b-form-select>
+              </v-flex>
+            </v-layout>
+
             <table class="table table-hover mt-4">
               <thead>
                 <tr>
@@ -90,10 +101,26 @@
                 </tr>
               </tbody>
             </table>
+            <v-btn dark class="text-capitalize " @click="pushTo('/schools')"
+              >Lihat Lainnya</v-btn
+            >
           </div>
         </v-flex>
 
-        <v-flex xs6> </v-flex>
+        <v-flex xs6>
+          <v-layout row wrap style="padding: 3rem 7rem 0 0rem">
+            <v-flex
+              xs6
+              v-for="city in landmarks"
+              :key="city.title"
+              class="landmark-card"
+            >
+              <v-card>
+                <v-img :src="city.image" max-height="250"></v-img>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-flex>
       </v-layout>
     </section>
   </div>
@@ -135,6 +162,45 @@ export default {
           name: "SMA Negeri 8 Jakarta",
           score: 4.9,
           id: 1
+        },  {
+          name: "SMA Negeri 8 Jakarta",
+          score: 4.9,
+          id: 1
+        },
+        {
+          name: "SMA Negeri 8 Jakarta",
+          score: 4.9,
+          id: 1
+        },
+        {
+          name: "SMA Negeri 8 Jakarta",
+          score: 4.9,
+          id: 1
+        },
+        {
+          name: "SMA Negeri 8 Jakarta",
+          score: 4.9,
+          id: 1
+        }
+      ],
+      places: [{ value: 1, text: "Jakarta" }],
+      selectedPlace: 1,
+      landmarks: [
+        {
+          image: require("../assets/jakarta.png"),
+          title: "Jakarta"
+        },
+        {
+          image: require("../assets/bali.png"),
+          title: "Bali"
+        },
+        {
+          image: require("../assets/medan.png"),
+          title: "Medan"
+        },
+        {
+          image: require("../assets/jogja.png"),
+          title: "Jogja"
         }
       ]
     };
@@ -160,10 +226,11 @@ export default {
   background-image: url("../assets/header.png");
   padding: 9rem;
   background-size: cover;
-  min-height: calc(100vh - 64px);
+  min-height: 100vh;
   h1 {
     font-size: 4rem;
     letter-spacing: 3px;
+    text-align: center;
   }
   .search-container {
     justify-content: center;
@@ -192,6 +259,15 @@ export default {
         width: 1.5rem;
       }
     }
+  }
+  button {
+    background-color: #2589bd !important;
+    border-radius: 3vh;
+    font-weight: 600;
+    width: 30%;
+  }
+  .landmark-card {
+    padding: 0 1rem 2rem 1rem;
   }
 }
 </style>

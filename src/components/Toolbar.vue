@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar color="primary">
+  <v-toolbar color="primary" fixed>
     <img
       src="../assets/logo.png"
       alt="Logo"
@@ -67,10 +67,11 @@ export default {
 .login-button {
   background-color: #2589bd !important;
   border-radius: 3vh;
-  margin-left: 3rem;
+  margin-right: 3rem !important;
 }
 .logo {
   max-height: 60%;
+  margin-left: 18px !important;
 }
 </style>
 
