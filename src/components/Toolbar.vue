@@ -1,0 +1,81 @@
+<template>
+  <v-toolbar color="primary">
+    <img
+      src="../assets/logo.png"
+      alt="Logo"
+      class="logo"
+      @click="pushTo('/')"
+    />
+
+    <v-spacer></v-spacer>
+
+    <div style="width: 35%" v-if="withSearch">
+      <div class="input-group md-form form-sm form-1 pl-0">
+        <div class="input-group-prepend" @click="search">
+          <span class="input-group-text lighten-3" id="basic-text1">
+            <mdbIcon icon="search" />
+          </span>
+        </div>
+        <input
+          class="form-control my-0 py-1"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+          v-model="searchQuery"
+          v-on:keyup.enter="search"
+        />
+      </div>
+    </div>
+
+    <v-spacer></v-spacer>
+
+    <v-toolbar-items>
+      <v-btn flat class="text-capitalize" @click="pushTo('/')"
+        >Peringkat Sekolah</v-btn
+      >
+    </v-toolbar-items>
+
+    <v-btn dark class="text-capitalize login-button">Masuk</v-btn>
+  </v-toolbar>
+</template>
+
+<script>
+import { mdbIcon } from "mdbvue";
+
+export default {
+  components: {
+    mdbIcon
+  },
+  props: ["withSearch"],
+  data() {
+    return {
+      searchQuery: ""
+    };
+  },
+  methods: {
+    search() {
+      if (this.searchQuery) this.$router.push(`search?q=${this.searchQuery}`);
+    },
+    pushTo: function(path) {
+      this.$router.push(path);
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.login-button {
+  background-color: #2589bd !important;
+  border-radius: 3vh;
+  margin-left: 3rem;
+}
+.logo {
+  max-height: 60%;
+}
+</style>
+
+<style>
+.text-capitalize {
+  text-transform: capitalize;
+}
+</style>
