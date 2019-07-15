@@ -108,7 +108,7 @@
         </v-flex>
 
         <v-flex xs6>
-          <v-layout row wrap style="padding: 3rem 7rem 0 0rem">
+          <v-layout row wrap style="padding: 3rem 7rem 0 0">
             <v-flex
               xs6
               v-for="city in landmarks"
@@ -117,7 +117,7 @@
               @click="pushTo(city.route)"
             >
               <v-card>
-                <v-img :src="city.image" max-height="250"></v-img>
+                <v-img :src="city.image" max-height="230"></v-img>
               </v-card>
             </v-flex>
           </v-layout>
@@ -191,22 +191,22 @@ export default {
         {
           image: require("../assets/jakarta.png"),
           title: "Jakarta",
-          route: "/schools?city=Jakarta"
+          route: "/schools?city=jakarta"
         },
         {
           image: require("../assets/bali.png"),
           title: "Bali",
-          route: "/schools?city=Bali"
+          route: "/schools?city=bali"
         },
         {
           image: require("../assets/medan.png"),
           title: "Medan",
-          route: "/schools?city=Medan"
+          route: "/schools?city=medan"
         },
         {
           image: require("../assets/jogja.png"),
           title: "Jogja",
-          route: "/schools?city=Jogja"
+          route: "/schools?city=jogja"
         }
       ]
     };
