@@ -43,6 +43,9 @@
 import { mdbIcon } from "mdbvue";
 
 export default {
+  mounted() {
+    this.searchQuery = this.$store.getters.searchQuery || this.$route.query.q;
+  },
   components: {
     mdbIcon
   },
@@ -54,7 +57,8 @@ export default {
   },
   methods: {
     search() {
-      if (this.searchQuery) this.$router.push(`search?q=${this.searchQuery}`);
+      this.$store.commit("changeQuery", this.searchQuery);
+      this.$router.push({ path: "search", query: { q: this.searchQuery } });
     },
     pushTo: function(path) {
       this.$router.push(path);

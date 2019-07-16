@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <toolbar :with-search="true"></toolbar>
-    <h1>Search</h1>
-  </div>
+  <toolbar :with-search="true"></toolbar>
 </template>
 
 <script>

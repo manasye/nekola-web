@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import BootstrapVue from "bootstrap-vue";
 import App from "./App.vue";
 import routes from "./routes";
+import { store } from "./stores";
 
 import "vuetify/dist/vuetify.min.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,5 +18,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   render: h => h(App),
+  store,
   router: routes
 }).$mount("#app");

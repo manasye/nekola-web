@@ -17,7 +17,7 @@
               <input
                 class="form-control my-0 py-1 input-search"
                 type="text"
-                placeholder="Cari Sekolah..."
+                placeholder="Cari Sekolah atau Guru..."
                 aria-label="Search"
                 v-model="searchQuery"
                 v-on:keyup.enter="search"
@@ -217,7 +217,8 @@ export default {
   },
   methods: {
     search() {
-      if (this.searchQuery) this.$router.push(`search?q=${this.searchQuery}`);
+      this.$store.commit("changeQuery", this.searchQuery);
+      this.$router.push({ path: "search", query: { q: this.searchQuery } });
     },
     pushTo: function(path) {
       this.$router.push(path);
@@ -230,7 +231,7 @@ export default {
 .home-header {
   color: white;
   background-image: url("../assets/header.png");
-  padding: 9rem;
+  padding: 12.5rem 9rem 9rem 9rem;
   background-size: cover;
   min-height: 100vh;
   h1 {
@@ -274,6 +275,14 @@ export default {
   }
   .landmark-card {
     padding: 0 1rem 2rem 1rem;
+    position: relative;
+    h4 {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      color: #2589bd;
+      font-weight: bold;
+    }
   }
 }
 </style>
