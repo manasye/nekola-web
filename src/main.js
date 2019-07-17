@@ -5,6 +5,7 @@ import BootstrapVue from "bootstrap-vue";
 import App from "./App.vue";
 import routes from "./routes";
 import { store } from "./stores";
+import * as VueGoogleMaps from "vue2-google-maps";
 
 import "vuetify/dist/vuetify.min.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -13,6 +14,14 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(Vuetify);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: process.env.VUE_APP_GMAPS_KEY,
+    libraries: "places"
+  },
+  installComponents: true
+});
 
 Vue.config.productionTip = false;
 
