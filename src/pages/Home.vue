@@ -34,7 +34,7 @@
               large
               dark
               class="text-capitalize "
-              @click="pushTo('/schools?m=compare')"
+              @click="pushTo('/compare')"
               >Bandingkan Sekolah</v-btn
             >
           </v-flex>
