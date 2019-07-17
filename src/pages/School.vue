@@ -113,7 +113,7 @@
 <script>
 import Toolbar from "../components/Toolbar";
 
-export default {
+  export default {
   components: {
     Toolbar
   },
