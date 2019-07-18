@@ -35,7 +35,7 @@
           <div v-if="firstSchool || secondSchool" class="mt-5">
             <p
               style="text-decoration: underline;cursor: pointer;"
-              @click="window.location = 'https://google.com'"
+              @click="goTo(1)"
             >
               SMA Negeri 8
             </p>
@@ -67,7 +67,7 @@
           <div v-if="firstSchool || secondSchool" class="mt-5">
             <p
               style="text-decoration: underline;cursor: pointer;"
-              @click="window.location = 'https://google.com'"
+              @click="goTo(2)"
             >
               SMA Negeri 8
             </p>
@@ -123,6 +123,13 @@ export default {
       document.getElementById(`results-2`).style.height = 0;
       this.firstResults = [];
       this.secondResults = [];
+    },
+    goTo(idx) {
+      if (idx === 1) {
+        this.$router.push(`/school/1`);
+      } else {
+        this.$router.push(`/school/1`);
+      }
     }
   }
 };

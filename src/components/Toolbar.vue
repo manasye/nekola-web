@@ -19,7 +19,7 @@
         <input
           class="form-control my-0 py-1"
           type="text"
-          placeholder="Search"
+          placeholder="Cari sekolah atau guru ..."
           aria-label="Search"
           v-model="searchQuery"
           v-on:keyup.enter="search"

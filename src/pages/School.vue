@@ -20,7 +20,12 @@
             Website &nbsp;<v-icon>language</v-icon>
           </v-btn>
 
-          <v-btn color="blue" class="white--text text-capitalize" round>
+          <v-btn
+            color="blue"
+            class="white--text text-capitalize"
+            round
+            @click="reviewPage"
+          >
             Review &nbsp;<v-icon>create</v-icon>
           </v-btn>
 
@@ -48,7 +53,7 @@
               <tr
                 v-for="(school, idx) in topSchools"
                 :key="idx"
-                @click="pushTo(`/school/${school.id}`);"
+                @click="pushTo(`/school/${school.id}`)"
                 style="cursor: pointer"
                 :class="idx === 1 ? 'bold' : ''"
               >
@@ -91,7 +96,7 @@
                 <tr
                   v-for="(teacher, idx) in topTeachers"
                   :key="idx"
-                  @click="pushTo(`/teacher/${teacher.id}`);"
+                  @click="pushTo(`/teacher/${teacher.id}`)"
                   style="cursor: pointer"
                 >
                   <td class="align-middle">{{ teacher.name }}</td>
@@ -231,6 +236,9 @@ export default {
   methods: {
     pushTo: function(path) {
       this.$router.push(path);
+    },
+    reviewPage: function() {
+      this.pushTo(`/review/school/${this.$route.params.id}`);
     }
   }
 };
@@ -254,12 +262,7 @@ export default {
   h5 {
     font-weight: 600;
   }
-  .bold {
-    font-weight: 600;
-  }
-  .no-bold {
-    font-weight: 400;
-  }
+
   .rate-score {
     border-radius: 50%;
     background-color: #2589bd;
@@ -275,5 +278,14 @@ export default {
     padding: 1rem;
     margin-bottom: 0.7rem;
   }
+}
+</style>
+
+<style>
+.bold {
+  font-weight: 600;
+}
+.no-bold {
+  font-weight: 400;
 }
 </style>
