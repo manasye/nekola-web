@@ -43,8 +43,8 @@
               large
               dark
               class="text-capitalize"
-              @click="pushTo('/schools?m=review')"
-              >Ulas Sekolah</v-btn
+              @click="pushTo('/search?method=review&type=school')"
+              >Review Sekolah</v-btn
             >
           </v-flex>
           <v-flex xs4>
@@ -52,8 +52,8 @@
               large
               dark
               class="text-capitalize"
-              @click="pushTo('/teachers?m=review')"
-              >Ulas Guru</v-btn
+              @click="pushTo('/search?method=review&type=teacher')"
+              >Review Guru</v-btn
             >
           </v-flex>
         </v-layout>
@@ -101,7 +101,10 @@
                 </tr>
               </tbody>
             </table>
-            <v-btn dark class="text-capitalize " @click="pushTo('/schools')"
+            <v-btn
+              dark
+              class="text-capitalize "
+              @click="pushTo('/search?type=school')"
               >Lihat Lainnya</v-btn
             >
           </div>
@@ -191,22 +194,22 @@ export default {
         {
           image: require("../assets/jakarta.png"),
           title: "Jakarta",
-          route: "/schools?city=jakarta"
+          route: "/search?city=jakarta"
         },
         {
           image: require("../assets/bali.png"),
           title: "Bali",
-          route: "/schools?city=bali"
+          route: "/search?city=bali"
         },
         {
           image: require("../assets/medan.png"),
           title: "Medan",
-          route: "/schools?city=medan"
+          route: "/search?city=medan"
         },
         {
           image: require("../assets/jogja.png"),
           title: "Jogja",
-          route: "/schools?city=jogja"
+          route: "/search?city=jogja"
         }
       ]
     };

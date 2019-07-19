@@ -24,6 +24,17 @@
           <v-flex xs4>a</v-flex>
         </v-layout>
       </div>
+      <v-textarea
+        solo
+        name="input-7-1"
+        label="Berikan komentar Anda..."
+        v-model="comment"
+        no-resize
+        style="width: 65%"
+      ></v-textarea>
+      <v-btn class="white--text text-capitalize primary-button" round>
+        Submit
+      </v-btn>
     </div>
   </div>
 </template>
@@ -37,7 +48,8 @@ export default {
   },
   data() {
     return {
-      rating: []
+      rating: [],
+      comment: ""
     };
   },
   methods: {}
@@ -53,6 +65,7 @@ export default {
   }
   .criteria {
     padding: 0 3rem;
+    margin-bottom: 3rem;
   }
 }
 </style>

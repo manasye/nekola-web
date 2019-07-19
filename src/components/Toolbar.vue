@@ -30,12 +30,15 @@
     <v-spacer></v-spacer>
 
     <v-toolbar-items>
-      <v-btn flat class="text-capitalize" @click="pushTo('/')"
+      <v-btn
+        flat
+        class="text-capitalize"
+        @click="pushTo('/search?type=school&sort=asc')"
         >Peringkat Sekolah</v-btn
       >
     </v-toolbar-items>
 
-    <v-btn dark class="text-capitalize login-button">Masuk</v-btn>
+    <v-btn dark class="text-capitalize primary-button login">Masuk</v-btn>
   </v-toolbar>
 </template>
 
@@ -68,9 +71,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login-button {
-  background-color: #2589bd !important;
-  border-radius: 3vh;
+.login {
+  border-radius: 3vh !important;
   margin-right: 3rem !important;
 }
 .logo {
@@ -82,5 +84,8 @@ export default {
 <style>
 .text-capitalize {
   text-transform: capitalize;
+}
+.primary-button {
+  background-color: #2589bd !important;
 }
 </style>

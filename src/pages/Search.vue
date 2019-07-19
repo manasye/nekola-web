@@ -22,28 +22,41 @@
             <th v-for="(header, idx) in headers" :key="idx">
               {{ header.name }}
             </th>
+            <th v-if="method === 'review'">Aksi</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="(school, idx) in schools"
+            v-for="(data, idx) in datas"
             :key="idx"
             @click="pushTo(`/school/${school.id}`)"
             style="cursor: pointer"
           >
             <td class="align-middle">
-              {{ school.category }}
+              {{ data.category }}
             </td>
             <td class="align-middle">
-              {{ school.name }}
+              {{ data.name }}
             </td>
             <td class="align-middle">
-              {{ school.location }}
+              {{ data.location }}
             </td>
-            <td>
-              <img src="../assets/star.png" alt="star" style="width: 10%" />
+            <td class="align-middle">
+              <img
+                src="../assets/star.png"
+                alt="star"
+                :style="method === 'review' ? 'width: 12%' : 'width: 10%'"
+              />
               &nbsp;
-              {{ school.score }}
+              {{ data.score }}
+            </td>
+            <td
+              v-if="method === 'review'"
+              @click="pushTo(`/review/school/${data.id}`)"
+            >
+              <v-btn color="blue-grey" class="text-capitalize" round dark small
+                >Review</v-btn
+              >
             </td>
           </tr>
         </tbody>
@@ -58,6 +71,7 @@ import Toolbar from "../components/Toolbar";
 export default {
   mounted() {
     this.searchQuery = this.$store.getters.searchQuery || this.$route.query.q;
+    this.method = this.$route.query.method || "";
   },
   data() {
     return {
@@ -76,7 +90,7 @@ export default {
           name: "Nilai Sekolah"
         }
       ],
-      schools: [
+      datas: [
         {
           category: "Sekolah",
           name: "SMA Negeri 8 Jakarta",
@@ -91,7 +105,8 @@ export default {
           score: 4.9,
           id: 1
         }
-      ]
+      ],
+      method: ""
     };
   },
   methods: {
