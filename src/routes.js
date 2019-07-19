@@ -6,9 +6,11 @@ import Compare from "./pages/Compare";
 import Teacher from "./pages/Teacher";
 import ReviewSchool from "./pages/ReviewSchool";
 import ReviewTeacher from "./pages/ReviewTeacher";
+import Login from "./pages/Login";
 
 const routes = [
   { path: "/", component: Home },
+  { path: "/login", component: Login },
   { path: "/search", component: Search },
   { path: "/compare", component: Compare },
   { path: "/school/:id", component: School },

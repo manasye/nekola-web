@@ -38,7 +38,12 @@
       >
     </v-toolbar-items>
 
-    <v-btn dark class="text-capitalize primary-button login">Masuk</v-btn>
+    <v-btn
+      dark
+      class="text-capitalize primary-button login"
+      @click="pushTo('/login')"
+      >Masuk</v-btn
+    >
   </v-toolbar>
 </template>
 
