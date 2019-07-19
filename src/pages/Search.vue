@@ -29,7 +29,7 @@
           <tr
             v-for="(data, idx) in datas"
             :key="idx"
-            @click="pushTo(`/school/${school.id}`)"
+            @click="pushTo(`/school/${data.id}`)"
             style="cursor: pointer"
           >
             <td class="align-middle">
@@ -52,7 +52,7 @@
             </td>
             <td
               v-if="method === 'review'"
-              @click="pushTo(`/review/school/${data.id}`)"
+              @click.stop="pushTo(`/review/school/${data.id}`)"
             >
               <v-btn color="blue-grey" class="text-capitalize" round dark small
                 >Review</v-btn

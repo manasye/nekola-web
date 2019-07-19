@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar color="primary" fixed>
+  <v-toolbar color="light" fixed>
     <img
       src="../assets/logo.png"
       alt="Logo"
