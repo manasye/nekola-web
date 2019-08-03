@@ -34,7 +34,7 @@
               large
               dark
               class="text-capitalize "
-              @click="pushTo('/compare')"
+              @click="pushTo('/compare');"
               >Bandingkan Sekolah</v-btn
             >
           </v-flex>
@@ -43,7 +43,7 @@
               large
               dark
               class="text-capitalize"
-              @click="pushTo('/search?method=review&type=school')"
+              @click="pushTo('/search?method=review&type=school');"
               >Review Sekolah</v-btn
             >
           </v-flex>
@@ -52,7 +52,7 @@
               large
               dark
               class="text-capitalize"
-              @click="pushTo('/search?method=review&type=teacher')"
+              @click="pushTo('/search?method=review&type=teacher');"
               >Review Guru</v-btn
             >
           </v-flex>
@@ -72,11 +72,12 @@
                 <b-form-select
                   v-model="selectedPlace"
                   :options="places"
+                  v-on:change="getTopSchool();"
                 ></b-form-select>
               </v-flex>
             </v-layout>
 
-            <table class="table table-hover mt-4">
+            <table class="table table-hover mt-4" v-if="schools.length !== 0">
               <thead>
                 <tr>
                   <th v-for="(header, idx) in headers" :key="idx">
@@ -88,23 +89,27 @@
                 <tr
                   v-for="(school, idx) in schools"
                   :key="idx"
-                  @click="pushTo(`/school/${school.id}`)"
+                  @click="pushTo(`/school/${school.id}`);"
                   style="cursor: pointer"
                 >
-                  <td class="align-middle">
-                    {{ school.name }}
-                  </td>
+                  <td class="align-middle">{{ school.sekolah }}</td>
                   <td>
                     <img src="../assets/star.png" alt="star" /> &nbsp;
-                    {{ school.score }}
+                    {{ school.score || 0 }}
                   </td>
                 </tr>
               </tbody>
             </table>
+
+            <h5 v-else class="mt-5">
+              Tidak ada sekolah terdaftar di lokasi ini.
+            </h5>
+
             <v-btn
               dark
               class="text-capitalize "
-              @click="pushTo('/search?type=school')"
+              @click="pushTo('/search?type=school');"
+              v-if="schools.length !== 0"
               >Lihat Lainnya</v-btn
             >
           </div>
@@ -117,7 +122,7 @@
               v-for="city in landmarks"
               :key="city.title"
               class="landmark-card"
-              @click="pushTo(city.route)"
+              @click="pushTo(city.route);"
             >
               <v-card>
                 <v-img :src="city.image" max-height="230"></v-img>
@@ -133,8 +138,12 @@
 <script>
 import Toolbar from "../components/Toolbar";
 import { mdbIcon } from "mdbvue";
+import axios from "axios";
 
 export default {
+  mounted() {
+    this.getTopSchool();
+  },
   data() {
     return {
       searchQuery: "",
@@ -146,50 +155,14 @@ export default {
           name: "Nilai Sekolah"
         }
       ],
-      schools: [
-        {
-          name: "SMA Negeri 8 Jakarta",
-          score: 4.9,
-          id: 1
-        },
-        {
-          name: "SMA Negeri 8 Jakarta",
-          score: 4.9,
-          id: 1
-        },
-        {
-          name: "SMA Negeri 8 Jakarta",
-          score: 4.9,
-          id: 1
-        },
-        {
-          name: "SMA Negeri 8 Jakarta",
-          score: 4.9,
-          id: 1
-        },
-        {
-          name: "SMA Negeri 8 Jakarta",
-          score: 4.9,
-          id: 1
-        },
-        {
-          name: "SMA Negeri 8 Jakarta",
-          score: 4.9,
-          id: 1
-        },
-        {
-          name: "SMA Negeri 8 Jakarta",
-          score: 4.9,
-          id: 1
-        },
-        {
-          name: "SMA Negeri 8 Jakarta",
-          score: 4.9,
-          id: 1
-        }
+      schools: [],
+      places: [
+        { value: "jakarta", text: "Jakarta" },
+        { value: "denpasar", text: "Denpasar" },
+        { value: "yogyakarta", text: "Yogyakarta" },
+        { value: "medan", text: "Medan" }
       ],
-      places: [{ value: 1, text: "Jakarta" }],
-      selectedPlace: 1,
+      selectedPlace: "jakarta",
       landmarks: [
         {
           image: require("../assets/jakarta.png"),
@@ -225,6 +198,14 @@ export default {
     },
     pushTo: function(path) {
       this.$router.push(path);
+    },
+    getTopSchool() {
+      axios
+        .get(`/search?city=${this.selectedPlace}&limit=10&sort`)
+        .then(res => {
+          this.schools = res.data.data;
+        })
+        .catch(() => {});
     }
   }
 };
